@@ -16,46 +16,24 @@ public class DocumentIndex extends ArrayList<IndexEntry> {
     }
 
     public void addAllWords(String str, int num) {
-  String[] words = str.split("\\W+");
-  for(String s : words) {
-   if(!s.equals("")) {
-    addWord(s, num);
-   }
-  }
- }
-    
-    
-    /*public void addAllWords(String line, int lineNumber) {
-        String[] working = line.split("\\W+");
-        for(int i = 0; i < working.length; i++) {
-            if(!(working[i].equals(""))) {
-                this.addWord(working[i], lineNumber);
+        String[] words = str.split("\\W+");
+        for(String s : words) {
+            if(!s.equals("")) {
+                addWord(s, num);
             }
         }
-    }*/
-    
-    /*private int foundOrInserted(String word) {
-        int i = 0;
-        while((this.get(i).getWord()).compareToIgnoreCase(word) <= 0 && i < this.size()) {
-            if(((this.get(i)).getWord()).compareToIgnoreCase(word) == 0) {
-                return i;
-            }
-            i++;
-        }
-        this.add(i, new IndexEntry(word));
-        return i;
-    }*/
+    }
     
     private int foundOrInserted(String word) {
         for(int i = 0; i < this.size(); i++) {
-        String entryWord = this.get(i).getWord().toUpperCase();
-        if(word.toUpperCase().equals(entryWord)) {
-            return i;
-        } else if(word.toUpperCase().compareTo(entryWord) < 0) {
-            IndexEntry ie = new IndexEntry(word);
-            this.add(i, ie);
+            String entryWord = this.get(i).getWord().toUpperCase();
+            if(word.toUpperCase().equals(entryWord)) {
+                return i;
+            } else if(word.toUpperCase().compareTo(entryWord) < 0) {
+                IndexEntry ie = new IndexEntry(word);
+                this.add(i, ie);
             
-            return i;
+                return i;
         }
     }
 
